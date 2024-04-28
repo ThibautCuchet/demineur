@@ -1,4 +1,5 @@
 import { useGame } from "@/context/game";
+import { cn } from "@/lib/utils";
 import { Cell as CellType } from "@/types/game";
 
 const baseClassNames =
@@ -9,7 +10,7 @@ const Cell = ({ cell, x, y }: { cell: CellType; x: number; y: number }) => {
 
   if (status === "lost" || status === "won") {
     return (
-      <div className={baseClassNames}>
+      <div className={cn(baseClassNames, "bg-muted/50")}>
         {cell.isMine ? (cell.state === "revealed" ? "💥" : "💣") : cell.value}
       </div>
     );
@@ -31,7 +32,7 @@ const Cell = ({ cell, x, y }: { cell: CellType; x: number; y: number }) => {
     );
   }
 
-  return <div className={baseClassNames}>{cell.value}</div>;
+  return <div className={cn(baseClassNames, "bg-muted/50")}>{cell.value}</div>;
 };
 
 export default function Grid() {
